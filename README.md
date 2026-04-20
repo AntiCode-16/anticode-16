@@ -1,6 +1,9 @@
 ## Hi 👋 I'm Anti
 
-Hobby Developer
+<a href="#"><img align="right" src="https://github-readme-stats.vercel.app/api/top-langs/?username=anticode-16&layout=compact&theme=transparent&title_color=ffffff&text_color=fffffe&border_color=3d444d&langs_count=6&hide=JSON,INI,Markdown,Java%20Properties,Jupyter%20Notebook,HOCON,YAML" alt="Top Languages"></a>
+
+#### Hobby Developer, just trying things out
+
 
 <!--
 
