@@ -20,17 +20,20 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            padding: 40px 20px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            padding: 40px 20px;
             color: #0d3c50;
         }
 
         .container {
             max-width: 1200px;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         h1 {
@@ -47,6 +50,7 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
             margin-bottom: 40px;
+            width: 100%;
         }
 
         .download-card {
@@ -187,6 +191,14 @@
                 fileName: 'item-2.zip',
                 fileUrl: '#',
                 fileSize: 'x MB'
+            },
+            {
+                title: 'Item 3',
+                description: 'Coming soon...',
+                preview: null,
+                fileName: 'item-3.zip',
+                fileUrl: '#',
+                fileSize: 'x MB'
             }
         ];
 
@@ -216,7 +228,7 @@
                         <div class="card-description">${item.description}</div>
                         <div class="card-info">Größe: ${item.fileSize}</div>
                         <button class="download-btn" ${item.preview ? `onclick="downloadFile(${index})"` : 'disabled'} style="${item.preview ? '' : 'opacity: 0.6; cursor: not-allowed;'}">
-                            Download
+                            ⬇️ Download
                         </button>
                     </div>
                 `;
