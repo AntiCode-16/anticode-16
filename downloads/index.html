@@ -191,14 +191,6 @@
                 fileName: 'item-2.zip',
                 fileUrl: '#',
                 fileSize: 'x MB'
-            },
-            {
-                title: 'Item 3',
-                description: 'Coming soon...',
-                preview: null,
-                fileName: 'item-3.zip',
-                fileUrl: '#',
-                fileSize: 'x MB'
             }
         ];
 
@@ -228,7 +220,7 @@
                         <div class="card-description">${item.description}</div>
                         <div class="card-info">Größe: ${item.fileSize}</div>
                         <button class="download-btn" ${item.preview ? `onclick="downloadFile(${index})"` : 'disabled'} style="${item.preview ? '' : 'opacity: 0.6; cursor: not-allowed;'}">
-                            ⬇️ Download
+                            Download
                         </button>
                     </div>
                 `;
