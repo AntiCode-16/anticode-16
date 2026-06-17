@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            min-height: 100vh;
+            background-image: url('Background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #0d3c50;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0d3c50;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            font-weight: 570;
+            filter: drop-shadow(0 0 6px currentColor);
+        }
+
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .download-card {
+            background: rgba(49, 194, 238, 0.65);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .download-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65);
+        }
+
+        .preview {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: rgba(77, 187, 234, 0.539);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-placeholder {
+            width: 100%;
+            height: 100%;
+            background: rgba(77, 187, 234, 0.539);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #0d3c50;
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .placeholder-text {
+            font-size: 0.6em;
+            margin-top: 10px;
+            opacity: 0.7;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #0d3c50;
+            margin-bottom: 8px;
+        }
+
+        .card-description {
+            font-size: 0.95em;
+            color: #0d3c50;
+            margin-bottom: 15px;
+            min-height: 40px;
+            opacity: 0.85;
+        }
+
+        .card-info {
+            font-size: 0.85em;
+            color: #0d3c50;
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(77, 187, 234, 0.8);
+            color: #0d3c50;
+            border: 1px solid rgba(13, 60, 80, 0.2);
+            border-radius: 12px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(49, 194, 238, 0.4);
+            background: rgba(77, 187, 234, 0.95);
+        }
+
+        .download-btn:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .downloads-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Downloads</h1>
+        <div class="downloads-grid" id="downloadsGrid"></div>
+    </div>
+
+    <script>
+        // HIER KANNST DU NEUE DOWNLOADS HINZUFÜGEN:
+        // Einfach ein neues Objekt in das Array hinzufügen
+        const downloads = [
+            {
+                title: 'Background Image',
+                description: 'Mein Hintergrund Bild',
+                preview: 'Background.jpg',
+                fileName: 'background.jpg',
+                fileUrl: 'Background.jpg',
+                fileSize: '0.2 MB'
+            },
+            {
+                title: 'Item 2',
+                description: 'Coming soon...',
+                preview: null,
+                fileName: 'item-2.zip',
+                fileUrl: '#',
+                fileSize: 'x MB'
+            },
+            {
+                title: 'Item 3',
+                description: 'Coming soon...',
+                preview: null,
+                fileName: 'item-3.zip',
+                fileUrl: '#',
+                fileSize: 'x MB'
+            }
+        ];
+
+        // Dynamisches Rendering der Download-Karten
+        function renderDownloads() {
+            const grid = document.getElementById('downloadsGrid');
+            grid.innerHTML = '';
+
+            downloads.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'download-card';
+
+                let preview;
+                if (item.preview) {
+                    preview = `<img src="${item.preview}" alt="${item.title}">`;
+                } else {
+                    preview = `<div class="preview-placeholder">
+                        [PLACEHOLDER]
+                        <div class="placeholder-text">Coming Soon</div>
+                    </div>`;
+                }
+
+                card.innerHTML = `
+                    <div class="preview">${preview}</div>
+                    <div class="card-content">
+                        <div class="card-title">${item.title}</div>
+                        <div class="card-description">${item.description}</div>
+                        <div class="card-info">Größe: ${item.fileSize}</div>
+                        <button class="download-btn" ${item.preview ? `onclick="downloadFile(${index})"` : 'disabled'} style="${item.preview ? '' : 'opacity: 0.6; cursor: not-allowed;'}">
+                            ⬇️ Download
+                        </button>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Download-Funktion
+        function downloadFile(index) {
+            const item = downloads[index];
+            const link = document.createElement('a');
+            link.href = item.fileUrl;
+            link.download = item.fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Beim Laden der Seite rendern
+        renderDownloads();
+    </script>
+</body>
+</html>
