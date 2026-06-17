@@ -46,14 +46,17 @@
         }
 
         .downloads-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 30px;
             margin-bottom: 40px;
+            justify-content: center;
             width: 100%;
         }
 
         .download-card {
+            width: 380px;
+            flex-shrink: 0;
             background: rgba(49, 194, 238, 0.65);
             backdrop-filter: blur(8px);
             border-radius: 28px;
